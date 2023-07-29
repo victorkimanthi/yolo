@@ -7,6 +7,12 @@
     local_clone_path: "/devops3"  # The path where you want to clone the repository
 
   tasks:
+    - name: Create directory
+      file:
+        path: /devops3  
+        state: directory
+        mode: "0755"  # Set appropriate permissions if needed
+
     - name: Clone the GitHub repository
       git:
         repo: "{{ repository_url }}"
