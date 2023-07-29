@@ -1,0 +1,13 @@
+---
+- name: Configuring ecommerce website on vm
+  hosts: your_target_hosts
+  become: true  # If you need root/sudo privileges 
+  vars:
+    repository_url: "https://github.com/victorkimanthi/yolo.git"
+    local_clone_path: "/path/to/your/local/clone"  # The path where you want to clone the repository
+
+  tasks:
+    - name: Clone the GitHub repository
+      git:
+        repo: "{{ repository_url }}"
+        dest: "{{ local_clone_path }}"
