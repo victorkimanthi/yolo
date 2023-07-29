@@ -4,7 +4,7 @@
   become: true  # If you need root/sudo privileges 
   vars:
     repository_url: "https://github.com/victorkimanthi/yolo.git"
-    local_clone_path: "/devops3"  # The path where you want to clone the repository
+    vm_clone_path: "/devops3"  # The path where you want to clone the repository
 
   tasks:
     - name: Create directory
@@ -16,4 +16,21 @@
     - name: Clone the GitHub repository
       git:
         repo: "{{ repository_url }}"
-        dest: "{{ local_clone_path }}"
+        dest: "{{ vm_clone_path }}"
+
+    - name: Update apt package index
+      apt:
+        update_cache: yes
+
+    - name: Install required packages for Docker
+      apt:
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes    
