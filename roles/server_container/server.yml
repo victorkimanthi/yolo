@@ -1,5 +1,12 @@
 ---
-- name: Copy Dockerfile for server
+- name: Copy Dockerfile to server
   copy:
     src: Dockerfile.server
     dest: "{{ vm_clone_path }}/Dockerfile.server"
+
+- name: Build backend container image
+  docker_image:
+    name: server_image
+    path: /roles/server_container/files
+    state: present
+  become: yes

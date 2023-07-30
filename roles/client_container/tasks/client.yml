@@ -1,5 +1,13 @@
 ---
-- name: Copy Dockerfile for client
+- name: Copy Dockerfile to client
   copy:
     src: Dockerfile.client
     dest: "{{ vm_clone_path }}/Dockerfile.client"
+
+- name: Build frontend container image
+  docker_image:
+    name: client_image
+    path: /roles/client_container/files
+    state: present
+  become: yes
+
