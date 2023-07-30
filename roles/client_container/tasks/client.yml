@@ -1,0 +1,5 @@
+---
+- name: Copy Dockerfile for client
+  copy:
+    src: Dockerfile.client
+    dest: "{{ vm_clone_path }}/Dockerfile.client"
