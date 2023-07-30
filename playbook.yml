@@ -34,5 +34,7 @@
         name: docker
         state: started
         enabled: yes   
-
+    
+    - name: Start Docker Compose services
+      command: docker-compose -f "{{ vm_clone_path }}/docker-compose.yml" up -d
   
