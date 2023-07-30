@@ -7,11 +7,11 @@
     vm_clone_path: "/devops3"  # The path where you want to clone the repository
 
   tasks:
-    - name: Create directory
-      file:
-        path: /devops3  
-        state: directory
-        mode: "0755"  # Set appropriate permissions if needed
+    # - name: Create directory
+    #   file:
+    #     path: /devops3  
+    #     state: directory
+    #     mode: "0755"  # Set appropriate permissions if needed
 
     - name: Clone the GitHub repository
       git:
@@ -33,4 +33,14 @@
       service:
         name: docker
         state: started
-        enabled: yes    
+        enabled: yes   
+
+    - name: Copy Dockerfile for client
+      copy:
+        src: /Dockerfile.client
+        dest: /Dockerfile.client
+
+    - name: Copy Dockerfile for server
+      copy:
+        src: /Dockerfile.server
+        dest: /Dockerfile.server 
