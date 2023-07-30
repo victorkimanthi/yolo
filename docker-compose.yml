@@ -1,21 +1,19 @@
 version: "3"
 services:
   client:
-    build:
-      context: .
-      dockerfile: Dockerfile.client
+    image: client_image  # Image built by the frontend_container role
     ports:
       - "3000:3000"
     depends_on:
       - server
+
   server:
-    build:
-      context: .
-      dockerfile: Dockerfile.server
+    image: server_image  # Image built by the backend_container role
     ports:
       - "4000:4000"
     depends_on:
       - database
+
   database:
     image: mongo
     volumes:
