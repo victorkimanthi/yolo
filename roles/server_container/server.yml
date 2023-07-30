@@ -1,0 +1,5 @@
+---
+- name: Copy Dockerfile for server
+  copy:
+    src: Dockerfile.server
+    dest: "{{ vm_clone_path }}/Dockerfile.server"
