@@ -9,7 +9,7 @@
   tasks:
     - name: Create directory
       file:
-        path: /devops3  
+        path: "{{vm_clone_path}}"  
         state: directory
         mode: "0755"  # Set appropriate permissions if needed
 
@@ -33,7 +33,11 @@
       service:
         name: docker
         state: started
-        enabled: yes   
+        enabled: yes 
+
+  roles:
+    - client_container
+    - server_container
     
     - name: Start Docker Compose services
       command: docker-compose -f "{{ vm_clone_path }}/docker-compose.yml" up -d
