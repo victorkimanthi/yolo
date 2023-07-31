@@ -23,17 +23,18 @@
         update_cache: yes
 
     - name: Install required packages for Docker
+      become: true  # Ensure we have sudo/root privileges to install packages
       apt:
-        name:
-          - docker.io
-          - docker-compose
+        name: docker.io      
         state: present
+        update_cache: yes
+ 
 
     - name: Install Docker Compose
+      become: true  # Ensure we have sudo/root privileges to install packages   
       apt:
         name: docker-compose
-        state: present
-    
+        state: present    
 
     - name: Start and enable Docker service
       service:
