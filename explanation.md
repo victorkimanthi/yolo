@@ -127,32 +127,33 @@ To summarize, this Dockerfile sets up a containerized Node.js environment using 
      
  #IP3 EXPLANATION
 
-     The provided playbook configures an e-commerce website on a target VM (ecommerceserver) using Ansible. 
+The provided playbook configures an e-commerce website on a target VM (ecommerceserver) using Ansible. 
 
 ##Order of Execution:
 
-The playbook begins with the name "Configuring ecommerce website on vm" and targets the ecommerceserver host.
-The playbook runs with elevated privileges (become: true) to handle tasks that require root/sudo access.
+1.The playbook begins with the name "Configuring ecommerce website on vm" and targets the ecommerceserver host.
+2.The playbook runs with elevated privileges (become: true) to handle tasks that require root/sudo access.
 Variables (repository_url and vm_clone_path) are defined for use throughout the playbook.
 The tasks outside the roles section are executed first, followed by the roles.
 Tasks Outside Roles:
 
-Create directory: This task uses the file module to create a directory at the specified vm_clone_path. It ensures that the directory exists with the given permissions (mode: 0755) to clone the repository.
+3.Create directory: This task uses the file module to create a directory at the specified vm_clone_path. It ensures that the directory exists with the given permissions (mode: 0755) to clone the repository.
 
-Clone the GitHub repository: The git module is used to clone the e-commerce website's repository from the repository_url to the vm_clone_path. This sets up the project's codebase for further processing.
+4.Clone the GitHub repository: The git module is used to clone the e-commerce website's repository from the repository_url to the vm_clone_path. This sets up the project's codebase for further processing.
 
-Update apt package index: The apt module updates the package index on the target VM to ensure the package information is up to date.
+5.Update apt package index: The apt module updates the package index on the target VM to ensure the package information is up to date.
 
-Install required packages for Docker: This task uses the apt module to install Docker (docker.io) on the target VM.
+6.Install required packages for Docker: This task uses the apt module to install Docker (docker.io) on the target VM.
 
-Install Docker Compose: The apt module is used again to install Docker Compose on the VM. Docker Compose is required to manage multi-container Docker applications.
+7.Install Docker Compose: The apt module is used again to install Docker Compose on the VM. Docker Compose is required to manage multi-container Docker applications.
 
-Start and enable Docker service: The service module ensures that the Docker service is started and enabled, ensuring Docker is ready to run containers.
+8.Start and enable Docker service: The service module ensures that the Docker service is started and enabled, ensuring Docker is ready to run containers.
 
-##Roles:
+9.Roles:
 
 The roles are defined under the roles section and include client_container and server_container.
-###Role client_container:
+
+9.1 Role client_container:
 
 name: The name of the task. In this case, it is "Build frontend container image" for clarity.
 
@@ -168,7 +169,7 @@ become: The become: yes parameter allows the task to be executed with elevated p
 
 Ansible will look for the Dockerfile in the specified path (/roles/client_container/files), and if it finds it or if it needs to be updated, it will build the Docker image with the name "client_image".
 
-###Role server_container:
+9.2 Role server_container:
 
 name: The name of the task. In this case, it is "Build backend container image" for clarity.
 
@@ -184,7 +185,7 @@ become: The become: yes parameter allows the task to be executed with elevated p
 
 With this task, Ansible will look for the Dockerfile in the specified path (/roles/server_container/files), and if it finds it or if it needs to be updated, it will build the Docker image with the name "server_image".
 
-Start Docker Compose services: Finally, the playbook runs the docker-compose up command to start the configured Docker containers using the docker-compose.yml file located at the specified vm_clone_path. This is the step where the frontend and backend containers work together to run the e-commerce website as a whole.
+10. Start Docker Compose services: Finally, the playbook runs the docker-compose up command to start the configured Docker containers using the docker-compose.yml file located at the specified vm_clone_path. This is the step where the frontend and backend containers work together to run the e-commerce website as a whole.
 
 
 
