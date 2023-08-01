@@ -1,22 +1,22 @@
 ---
 - name: Configuring ecommerce website on vm
-  hosts: [ecommerce_server]
+  hosts: ecommerceserver
   become: true  # If you need root/sudo privileges 
   vars:
     repository_url: "https://github.com/victorkimanthi/yolo.git"
     vm_clone_path: "/devops3"  # The path where you want to clone the repository
-
+    
   tasks:
     - name: Create directory
       file:
         path: "{{vm_clone_path}}"  
         state: directory
         mode: "0755"  # Set appropriate permissions if needed
-
+  
     - name: Clone the GitHub repository
       git:
         repo: "{{ repository_url }}"
-        dest: "{{ vm_clone_path }}"
+        dest: "{{vm_clone_path}}"
 
     - name: Update apt package index
       apt:
@@ -47,6 +47,11 @@
     - server_container
     
   tasks:  
-    - name: Start Docker Compose services
-      command: docker-compose -f "{{ vm_clone_path }}/docker-compose.yml" up -d
+  - name: Copy Docker compose 
+    copy:
+        src: /docker-compose.yml
+        dest: "{{vm_clone_path}}"
+
+  - name: Start Docker Compose services
+    command: docker-compose -f "{{vm_clone_path}}/docker-compose.yml" up -d
   

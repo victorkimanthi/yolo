@@ -1,8 +1,4 @@
 ---
-- name: Copy Dockerfile to client
-  copy:
-    src: Dockerfile.client
-    dest: "{{ vm_clone_path }}/Dockerfile.client"
 
 - name: Build frontend container image
   docker_image:
