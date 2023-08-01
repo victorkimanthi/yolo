@@ -120,16 +120,16 @@ To summarize, this Dockerfile sets up a containerized Node.js environment using 
 
 
 
-    
-     
+
+
      //**************************************************************************************************
      
      
-     IP3 EXPLANATION
+ #IP3 EXPLANATION
 
      The provided playbook configures an e-commerce website on a target VM (ecommerceserver) using Ansible. 
 
-Order of Execution:
+##Order of Execution:
 
 The playbook begins with the name "Configuring ecommerce website on vm" and targets the ecommerceserver host.
 The playbook runs with elevated privileges (become: true) to handle tasks that require root/sudo access.
@@ -149,10 +149,10 @@ Install Docker Compose: The apt module is used again to install Docker Compose o
 
 Start and enable Docker service: The service module ensures that the Docker service is started and enabled, ensuring Docker is ready to run containers.
 
-Roles:
+##Roles:
 
 The roles are defined under the roles section and include client_container and server_container.
-Role client_container:
+###Role client_container:
 
 name: The name of the task. In this case, it is "Build frontend container image" for clarity.
 
@@ -168,7 +168,7 @@ become: The become: yes parameter allows the task to be executed with elevated p
 
 Ansible will look for the Dockerfile in the specified path (/roles/client_container/files), and if it finds it or if it needs to be updated, it will build the Docker image with the name "client_image".
 
-Role server_container:
+###Role server_container:
 
 name: The name of the task. In this case, it is "Build backend container image" for clarity.
 
