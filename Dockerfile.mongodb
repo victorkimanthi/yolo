@@ -1,0 +1,14 @@
+# Use an official MongoDB base image
+FROM mongo:latest
+
+# Expose MongoDB port
+EXPOSE 27017
+
+# Create a directory for MongoDB data
+RUN mkdir -p /data/db
+
+# Set the working directory
+WORKDIR /data/db
+
+# Start the MongoDB server
+CMD ["mongod"]
