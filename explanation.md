@@ -216,6 +216,18 @@ iii)Build the images for creating containers
       - pushing mongodb image
       docker push gcr.io/ip4gke/yoloserver_image:v1.0.0
 
+  v)Created a manifests folder and added kubernetes manifest files for the images in the container registry.
+
+vi)Create a kubernetes cluster  in GKE.
+
+vii)Connect to the cluster
+    
+     gcloud container clusters get-credentials autopilot-cluster-1 --zone us-central1
+
+ viii) Use the kubectl apply -f command to apply each manifest file to your Kubernetes cluster  
+      
+      kubectl apply -f client-deployment.yaml
+   
 
 
 
