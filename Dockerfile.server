@@ -9,5 +9,8 @@ RUN npm install
 
 COPY ./backend .
 
+# Expose the port used by the development server
+EXPOSE 4000
+
 CMD ["npm", "start"]
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

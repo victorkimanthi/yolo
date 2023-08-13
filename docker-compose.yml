@@ -12,7 +12,7 @@ services:
     ports:
       - "4000:4000"
     depends_on:
-      - databaseplaybook
+      - database 
 
   database:
     image: mongo

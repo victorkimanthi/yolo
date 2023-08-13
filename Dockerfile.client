@@ -9,4 +9,7 @@ RUN npm install
 
 COPY ./client .
 
+# Expose the port used by the development server
+EXPOSE 3000
+
 CMD ["npm", "start"]
