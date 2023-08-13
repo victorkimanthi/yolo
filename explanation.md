@@ -187,5 +187,20 @@ With this task, Ansible will look for the Dockerfile in the specified path (/rol
 
 10. Start Docker Compose services: Finally, the playbook runs the docker-compose up command to start the configured Docker containers using the docker-compose.yml file located at the specified vm_clone_path. This is the step where the frontend and backend containers work together to run the e-commerce website as a whole.
 
+ 
+  //*******************************************************
+    IP 4 Orchestration
+
+-Run the command below to build the client image
+   sudo docker build -t gcr.io/ip4gke/yoloclient_image:v1.0.0 -f Dockerfile.client .
+
+-  Run the command below to build the server image
+   sudo docker build -t gcr.io/ip4gke/yoloserver_image:v1.0.0 -f Dockerfile.server .
+   
+ - To build mongodb image
+sudo docker build -t gcr.io/ip4gke/mongodb_image:v1.0.0 -f Dockerfile.mongodb .   
+
+
+
 
 
