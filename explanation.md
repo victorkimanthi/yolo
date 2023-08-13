@@ -231,6 +231,13 @@ vii)Connect to the cluster
        kubectl apply -f server-deployment.yaml
 
        kubectl apply -f mongodb.yaml
+
+   Objectives
+ 1. Choice of the Kubernetes Objects used for deployment (Use of - or the lack of use - of StatefulSets for storage solutions).     
+ I used deployments to deploy the first  2 containers(client and server) because they are stateless and do not require to store data.Deployments are the most common way to manage stateless applications. They are designed for applications that can be scaled horizontally by adding or removing replicas.For the other mongodb container, I used statefulsets because they use storage volumes to provide persistence for your workload.Stateful applications are applications that store data and keep tracking it. All databases, such as MySQL, Oracle, and PostgreSQL, are examples of stateful applications. Stateless applications, on the other hand, do not keep the data. Node.js and Nginx are examples of stateless applications. For each request, the stateless application will receive new data and process it.
+
+ volumeClaimTemplates are used to dynamically provision storage for each replica of a stateful application.
+ When you define volumeClaimTemplates, Kubernetes will automatically create a Persistent Volume Claims (PVC) for each replica based on the template configuration you provide. This allows each replica to have its own dedicated and persistent storage.This setup ensures data persistence even if something goes wrong with the mongodb  database. 
    
 
 
