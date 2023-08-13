@@ -1,9 +1,0 @@
----
-
-- name: Build frontend container image
-  docker_image:
-    name: client_image
-    path: /roles/client_container/files
-    state: present
-  become: yes
-

@@ -1,8 +1,0 @@
----
-
-- name: Build backend container image
-  docker_image:
-    name: server_image
-    path: /roles/server_container/files
-    state: present
-  become: yes
