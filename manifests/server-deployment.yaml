@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-app
+spec:
+  replicas: 1  # Number of desired replicas
+  selector:
+    matchLabels:
+      app: server-app
+  template:
+    metadata:
+      labels:
+        app: server-app
+    spec:
+      containers:
+        - name: server-container
+          image: gcr.io/ip4gke/yoloserver_image:v1.0.0  # Replace with actual image path
+          ports:
+            - containerPort: 4000  # Exposed port in the Dockerfile
