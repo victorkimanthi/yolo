@@ -227,6 +227,10 @@ vii)Connect to the cluster
  viii) Use the kubectl apply -f command to apply each manifest file to your Kubernetes cluster  
       
       kubectl apply -f client-deployment.yaml
+
+       kubectl apply -f server-deployment.yaml
+
+       kubectl apply -f mongodb.yaml
    
 
 
