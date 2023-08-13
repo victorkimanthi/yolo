@@ -191,14 +191,30 @@ With this task, Ansible will look for the Dockerfile in the specified path (/rol
   //*******************************************************
     IP 4 Orchestration
 
--Run the command below to build the client image
-   sudo docker build -t gcr.io/ip4gke/yoloclient_image:v1.0.0 -f Dockerfile.client .
+i) Activate the gcloud shell 
+ii)git clone the the project 
+      git clone https://github.com/victorkimanthi/yolo.git
 
--  Run the command below to build the server image
-   sudo docker build -t gcr.io/ip4gke/yoloserver_image:v1.0.0 -f Dockerfile.server .
-   
- - To build mongodb image
-sudo docker build -t gcr.io/ip4gke/mongodb_image:v1.0.0 -f Dockerfile.mongodb .   
+iii)Build the images for creating containers
+  -  Run the command below to build the client image
+    docker build -t gcr.io/ip4gke/yoloclient_image:v1.0.0 -f Dockerfile.client .
+
+  - Run the command below to build the server image
+    docker build -t gcr.io/ip4gke/yoloserver_image:v1.0.0 -f Dockerfile.server .
+
+  - To build mongodb image
+    docker build -t gcr.io/ip4gke/mongodb_image:v1.0.0 -f Dockerfile.mongodb .   
+
+   iv)Pushing the docker images to google container registry 
+
+     - pushing server image
+      docker push gcr.io/ip4gke/yoloserver_image:v1.0.0
+
+      - pushing client image
+      docker push gcr.io/ip4gke/yoloclient_image:v1.0.0
+
+      - pushing mongodb image
+      docker push gcr.io/ip4gke/yoloserver_image:v1.0.0
 
 
 
