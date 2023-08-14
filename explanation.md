@@ -245,5 +245,5 @@ vii)Connect to the cluster
 3.Use-of or there-lack-of of persistent storage.
   To ensure each pod has its own storage, i used statefulsets.StatefulSets work well with Persistent Volume Claims (PVCs), which enable each Pod to have its own stable storage.When a StatefulSet Pod is created, the volumeClaimTemplates section generates a unique PVC for each Pod based on the template  provided. This PVC is then used to mount the persistent storage into the MongoDB container. As you scale the StatefulSet or if a Pod is replaced, the PVCs and their data are retained, ensuring data persistence across Pod restarts or recreations.
 
-
+Deployed app - http://34.31.104.12:3000/
 
